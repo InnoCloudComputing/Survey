@@ -6,21 +6,6 @@
 <div>
     <h1 class="mt-3">PaaS Survey App</h1>
 	<form action="/survey/" method="post">{% csrf_token %}
-        <div class="form-group">
-            <label for="joke">Tell me your favorite joke</label>
-            <textarea id="joke" class="form-control" cols="30" rows="10"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="clouds">PaaS, SaaS or IaaS?</label>
-            <select class="form-control" id="clouds">
-                <option selected>Choose...</option>
-                <option value="1">PaaS</option>
-                <option value="2">SaaS</option>
-                <option value="3">IaaS</option>
-            </select>
-        </div>
-
-
 		<div class="category-container">
 
         <div class="form-group">
@@ -29,35 +14,25 @@
 {#			<span class="form-help-text">{{ response_form.interviewer.help_text}}</span>#}
 				{{ response_form.interviewer }}
 		</div>
-
-		<div class="field-wrapper question-required">
+        <div class="form-group">
 			{{ response_form.interviewee.errors }}
-			<span class="asterix"> * </span>{{ response_form.interviewee.label_tag }}
-			<span class="form-help-text">{{ response_form.interviewee.help_text}}</span>
-			<div class="form-field-body">
+            <label for="username">{{ response_form.interviewee.label_tag }}</label>
+{#			<span class="form-help-text">{{ response_form.interviewee.help_text}}</span>#}
 				{{ response_form.interviewee }}
-			</div>
 		</div>
-
-		<div class="field-wrapper">
+        <div class="form-group">
 			{{ response_form.conditions.errors }}
-			{{ response_form.conditions.label_tag }}
-			<span class="form-help-text">{{ response_form.conditions.help_text}}</span>
-			<div class="form-field-body">
+            <label for="joke">{{ response_form.conditions.label_tag }}</label>
+{#			<span class="form-help-text">{{ response_form.conditions.help_text}}</span>#}
 				{{ response_form.conditions }}
-			</div>
 		</div>
-
-		<div class="field-wrapper">
+        <div class="form-group">
 			{{ response_form.comments.errors }}
-			{{ response_form.comments.label_tag }}
-			<span class="form-help-text">{{ response_form.comments.help_text}}</span>
-			<div class="form-field-body">
-				{{ response_form.comments }}
-			</div>
+			<label for="joke">{{ response_form.comments.label_tag }}</label>
+{#			<span class="form-help-text">{{ response_form.comments.help_text}}</span>#}
+                {{ response_form.comments }}
 		</div>
 	</div>
-
 
         <fieldset class="form-group">
             <legend>What do you like? <a href="#" class="btn btn-success btn-sm" role="#button"><i class="fa fa-pencil" aria-hidden="true"></i></a></legend>
