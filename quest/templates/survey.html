@@ -3,15 +3,28 @@
 
 {% block body %}
 
-<h1>Welcome to {{survey.name|title}}</h1>
-<div class="survey-description">
-	{{survey.description|safe}}
-</div>
-
 <div>
-	<form action="/survey/{{survey.id}}/" method="post">{% csrf_token %}
+    <h1 class="mt-3">PaaS Survey App</h1>
+	<form action="/survey/" method="post">{% csrf_token %}
+        <div class="form-group">
+            <label for="username">What is your name? <a href="#" class="btn btn-success btn-sm" role="#button"><i class="fa fa-pencil" aria-hidden="true"></i></a></label>
+            <input type="text" class="form-control" id="username">
+        </div>
+        <div class="form-group">
+            <label for="joke">Tell me your favorite joke <a href="#" class="btn btn-success btn-sm" role="#button"><i class="fa fa-pencil" aria-hidden="true"></i></a></label>
+            <textarea id="joke" class="form-control" cols="30" rows="10"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="clouds">PaaS, SaaS or IaaS? <a href="#" class="btn btn-success btn-sm" role="#button"><i class="fa fa-pencil" aria-hidden="true"></i></a></label>
+            <select class="form-control" id="clouds">
+                <option selected>Choose...</option>
+                <option value="1">PaaS</option>
+                <option value="2">SaaS</option>
+                <option value="3">IaaS</option>
+            </select>
+        </div>
 
-		<h3 class="collapsible" id="response_metadata">Response Metadata<span></span></h3>
+
 		<div class="category-container">
 
 		<div class="field-wrapper question-required">
@@ -51,9 +64,38 @@
 		</div>
 	</div>
 
-		<ol class="survey-questions">
+
+        <fieldset class="form-group">
+            <legend>What do you like? <a href="#" class="btn btn-success btn-sm" role="#button"><i class="fa fa-pencil" aria-hidden="true"></i></a></legend>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input">
+                    Water
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input">
+                    Juice
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input">
+                    Cappuccino
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input">
+                    Coca-Cola
+                </label>
+            </div>
+        </fieldset>
+
+        <fieldset class="form-group">
 		{% for category in categories %}
-			<h3 class="collapsible">{{category|title}} Questions<span></span></h3>
+            <legend>{{category|title}} Questions</legend>
 			<div class="category-container">
 			{% for field in response_form %}
 				{% if field.field.widget.attrs.category == category %}
@@ -77,9 +119,10 @@
 			{% endfor %}
 			</div>
 		{% endfor %}
-		</ol>
+        </fieldset>
 
-		<div class="submit-button"><input type="submit" value="I'm done!"></div>
+        <button class="btn btn-warning" type="reset">Reset</button>
+        <button class="btn btn-success" type="submit">Submit</button>
 	</form>
 
 </div>
