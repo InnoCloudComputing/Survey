@@ -14,8 +14,8 @@ def index(request):
     return render(request, 'index.html')
 
 
-def survey_detail(request, id):
-    survey = Survey.objects.get(id=id)
+def survey_detail(request):
+    survey = Survey.objects.get(id=1)
     category_items = Category.objects.filter(survey=survey)
     categories = [c.name for c in category_items]
     print 'categories for this survey:'
