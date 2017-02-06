@@ -7,15 +7,11 @@
     <h1 class="mt-3">PaaS Survey App</h1>
 	<form action="/survey/" method="post">{% csrf_token %}
         <div class="form-group">
-            <label for="username">What is your name? <a href="#" class="btn btn-success btn-sm" role="#button"><i class="fa fa-pencil" aria-hidden="true"></i></a></label>
-            <input type="text" class="form-control" id="username">
-        </div>
-        <div class="form-group">
-            <label for="joke">Tell me your favorite joke <a href="#" class="btn btn-success btn-sm" role="#button"><i class="fa fa-pencil" aria-hidden="true"></i></a></label>
+            <label for="joke">Tell me your favorite joke</label>
             <textarea id="joke" class="form-control" cols="30" rows="10"></textarea>
         </div>
         <div class="form-group">
-            <label for="clouds">PaaS, SaaS or IaaS? <a href="#" class="btn btn-success btn-sm" role="#button"><i class="fa fa-pencil" aria-hidden="true"></i></a></label>
+            <label for="clouds">PaaS, SaaS or IaaS?</label>
             <select class="form-control" id="clouds">
                 <option selected>Choose...</option>
                 <option value="1">PaaS</option>
@@ -27,13 +23,11 @@
 
 		<div class="category-container">
 
-		<div class="field-wrapper question-required">
+        <div class="form-group">
 			{{ response_form.interviewer.errors }}
-			<span class="asterix"> * </span>{{ response_form.interviewer.label_tag }}
-			<span class="form-help-text">{{ response_form.interviewer.help_text}}</span>
-			<div class="form-field-body">
+            <label for="username">{{ response_form.interviewer.label_tag }}</label>
+{#			<span class="form-help-text">{{ response_form.interviewer.help_text}}</span>#}
 				{{ response_form.interviewer }}
-			</div>
 		</div>
 
 		<div class="field-wrapper question-required">
