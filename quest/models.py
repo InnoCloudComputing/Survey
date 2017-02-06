@@ -39,6 +39,12 @@ class Question(models.Model):
     SELECT_MULTIPLE = 'select-multiple'
     INTEGER = 'integer'
 
+    def __init__(self, *args, **kwargs):
+        for field in iter(self.fields):
+            self.fields[field].widget.attrs.update({
+                'class': 'form-control'
+            })
+
     QUESTION_TYPES = (
         (TEXT, 'text'),
         (RADIO, 'radio'),
