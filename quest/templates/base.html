@@ -37,17 +37,16 @@
                 </li>
             </ul>
             <a class="btn btn-outline-info" role="button" href="#" style="margin-right: 5px">
-                <img src="./russia.png" alt="Switch to Russian" style="margin: 0 2px 2px 0">
+                <img src="/media/img/russia.png" alt="Switch to Russian" style="margin: 0 2px 2px 0">
                 RU
             </a>
-            <a class="btn btn-outline-danger" role="button" href="#">Sign in</a>
+            <a class="btn btn-outline-danger" role="button" href="/admin/">Sign in</a>
         </div>
     </div>
 </nav>
 
 	<!-- Part 1: Wrap all page content here -->
 	{% block wrapper %}
-	<div id="wrap">
 	{% endblock %}
 
 	<div class="container" id="container-main">
@@ -56,20 +55,11 @@
 
 	<div id="push"></div> <!-- #push goes inside container -->
 	</div> <!-- /container -->
-	</div> <!-- end #wrap -->
 
-	<footer class="footer">
-		<div class="container">
-	{% block footer %}
-	{% endblock %}
-	</container>
-	</footer>
 
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-	<script src="/media/js/jquery-ui-1.9.1.custom.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-	{% block extrajs %}
 	{% endblock %}
   </body>
 </html>
