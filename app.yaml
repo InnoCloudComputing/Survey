@@ -1,0 +1,10 @@
+runtime: python27
+api_version: 1
+threadsafe: true
+
+libraries:
+- name: django
+  version: "1.10.5"
+
+builtins:
+- django_wsgi: on
