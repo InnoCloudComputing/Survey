@@ -26,6 +26,11 @@ class ResponseForm(models.ModelForm):
         super(ResponseForm, self).__init__(*args, **kwargs)
         self.uuid = random_uuid = uuid.uuid4().hex
 
+        for field in iter(self.fields):
+            self.fields[field].widget.attrs.update({
+                'class': 'form-control'
+            })
+
         # add a field for each survey question, corresponding to the question
         # type as appropriate.
         data = kwargs.get('data')
