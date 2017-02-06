@@ -9,26 +9,26 @@
 		<div class="category-container">
 
         <div class="form-group">
-			{{ response_form.interviewer.errors }}
             <label for="username">{{ response_form.interviewer.label_tag }}</label>
+			{{ response_form.interviewer.errors }}
 {#			<span class="form-help-text">{{ response_form.interviewer.help_text}}</span>#}
 				{{ response_form.interviewer }}
 		</div>
         <div class="form-group">
-			{{ response_form.interviewee.errors }}
             <label for="username">{{ response_form.interviewee.label_tag }}</label>
+			{{ response_form.interviewee.errors }}
 {#			<span class="form-help-text">{{ response_form.interviewee.help_text}}</span>#}
 				{{ response_form.interviewee }}
 		</div>
         <div class="form-group">
-			{{ response_form.conditions.errors }}
             <label for="joke">{{ response_form.conditions.label_tag }}</label>
+			{{ response_form.conditions.errors }}
 {#			<span class="form-help-text">{{ response_form.conditions.help_text}}</span>#}
 				{{ response_form.conditions }}
 		</div>
         <div class="form-group">
-			{{ response_form.comments.errors }}
 			<label for="joke">{{ response_form.comments.label_tag }}</label>
+			{{ response_form.comments.errors }}
 {#			<span class="form-help-text">{{ response_form.comments.help_text}}</span>#}
                 {{ response_form.comments }}
 		</div>
@@ -39,10 +39,10 @@
 				{% if field.field.widget.attrs.category == category %}
 
                     <fieldset class="form-group" value="{% counter %}">
-                        {% if field.field.required %}
                         <div class="field-wrapper question-required">
                             {{ field.errors }}
                             <legend>{{ field.label }}</legend>
+                            {% if field.field.required %}
 {#                        {% else %}#}
 {#                        <div class="field-wrapper">#}
 {#                            {{ field.errors }}#}
