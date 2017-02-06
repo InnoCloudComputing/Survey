@@ -34,35 +34,6 @@
 		</div>
 	</div>
 
-
-        <fieldset class="form-group">
-            <legend>What do you like? <a href="#" class="btn btn-success btn-sm" role="#button"><i class="fa fa-pencil" aria-hidden="true"></i></a></legend>
-            <div class="form-check">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input">
-                    Water
-                </label>
-            </div>
-            <div class="form-check">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input">
-                    Juice
-                </label>
-            </div>
-            <div class="form-check">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input">
-                    Cappuccino
-                </label>
-            </div>
-            <div class="form-check">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input">
-                    Coca-Cola
-                </label>
-            </div>
-        </fieldset>
-
 		{% for category in categories %}
 			{% for field in response_form %}
 				{% if field.field.widget.attrs.category == category %}
