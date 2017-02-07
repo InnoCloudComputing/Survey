@@ -55,7 +55,7 @@ def survey_statistic(request):
         elif q.question_type == Question.SELECT_MULTIPLE:
             result += "{\"name\":\"" + q.text + "\",\"data\":["
             for v in question_variants:
-                count = AnswerSelectMultiple.objects.filter(body=v).count()
+                count = AnswerSelectMultiple.objects.filter(body="[u'" + v + "']").count()
                 result += "{\"name\":\"" + v + "\",\"value\":" + str(count) + "},"
             result = result[:-1] + "]},"
         elif q.question_type == Question.INTEGER:
