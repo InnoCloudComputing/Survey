@@ -4,7 +4,7 @@
 {% block body %}
 
     <script>
-        var jsonString = JSON.parse(document.getElementById('json'));
+        var jsonString = JSON.parse(document.getElementById('json').innerHTML);
         var ctx1 = document.getElementById("first");
         var firstChart = new Chart(ctx1, {
             type: 'pie',
