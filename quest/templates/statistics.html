@@ -10,7 +10,7 @@
 		<div class="category-container">
             <div id="results">
                 <div id="json" style="display: none">{{ results }}</div>
-                <h3 id="firsth">jsonString[0].name</h3>
+                <h3 id="firsth"></h3>
                 <canvas id="first" width="400" height="400"></canvas>
                 <div id="second"></div>
                 <div id="third"></div>
@@ -25,6 +25,7 @@
     <script>
         var jsonString = JSON.parse(document.getElementById('json').innerHTML);
         var ctx1 = document.getElementById("first");
+        document.getElementById('firsth').innerHTML = jsonString[0].name;
         var firstChart = new Chart(ctx1, {
             type: 'pie',
             data: {
