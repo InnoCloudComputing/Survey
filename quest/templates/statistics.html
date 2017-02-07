@@ -10,9 +10,11 @@
 		<div class="category-container">
             <div id="results">
                 <div id="json" style="display: none">{{ results }}</div>
+                <h3 id="firsth">jsonString[0].name</h3>
                 <canvas id="first" width="400" height="400"></canvas>
                 <div id="second"></div>
                 <div id="third"></div>
+                <h3 id="fourth">jsonString[3].name</h3>
                 <canvas id="fourth" width="400" height="400"></canvas>
             </div>
         </div>
@@ -39,8 +41,8 @@
                 }]
             }
         });
-        document.getElementById("second").innerHTML = "<h3>" + jsonString[1].name + "</h3><p><strong>Average: " + jsonString[1].data.value + "</strong></p>";
-        document.getElementById("third").innerHTML = "<h3>" + jsonString[2].name + "</h3><p><strong>Average: " + jsonString[2].data.value + "</strong></p>";
+        document.getElementById("second").innerHTML = "<h3>" + jsonString[1].name + "</h3><p><strong>Average: " + jsonString[1].data[0].value + "</strong></p>";
+        document.getElementById("third").innerHTML = "<h3>" + jsonString[2].name + "</h3><p><strong>Average: " + jsonString[2].data[0].value + "</strong></p>";
         var ctx4 = document.getElementById("fourth");
         var fourthChart = new Chart(ctx4, {
             type: 'pie',
