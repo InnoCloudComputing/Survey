@@ -1,13 +1,9 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render_to_response
-from django.template import RequestContext
-from django.core import urlresolvers
-from django.contrib import messages
-import datetime
 
-from models import Question, Survey, Category
 from forms import ResponseForm
+from models import Question, Survey, Category
+from quest.models import *
 
 
 def index(request):
@@ -18,8 +14,6 @@ def survey_detail(request):
     survey = Survey.objects.get(id=1)
     category_items = Category.objects.filter(survey=survey)
     categories = [c.name for c in category_items]
-    print 'categories for this survey:'
-    print categories
     if request.method == 'POST':
         form = ResponseForm(request.POST, survey=survey)
         if form.is_valid():
@@ -27,7 +21,6 @@ def survey_detail(request):
             return HttpResponseRedirect("/confirm/%s" % response.interview_uuid)
     else:
         form = ResponseForm(survey=survey)
-        print form
     # TODO sort by category
     return render(request, 'survey.html', {'response_form': form, 'survey': survey, 'categories': categories})
 
@@ -39,3 +32,41 @@ def confirm(request, uuid):
 
 def privacy(request):
     return render(request, 'privacy.html')
+
+def survey_statistic(request):
+    # get all questions
+    questions = Question.objects.all()
+    result = "["
+    for q in questions:
+        # get all answers for the question
+        question_variants = [x.strip() for x in q.choices.split(",")]
+        if q.question_type == Question.RADIO:
+            result += "{\"name\":\"" + q.text + "\",\"data\":["
+            for v in question_variants:
+                count = AnswerRadio.objects.filter(body=v).count()
+                result += "{\"name\":\"" + v + "\",\"value\":" + str(count) + "},"
+            result = result[:-1] + "]},"
+        elif q.question_type == Question.SELECT:
+            result += "{\"name\":\"" + q.text + "\",\"data\":["
+            for v in question_variants:
+                count = AnswerSelect.objects.filter(body=v).count()
+                result += "{\"name\":\"" + v + "\",\"value\":" + str(count) + "},"
+            result = result[:-1] + "]},"
+        elif q.question_type == Question.SELECT_MULTIPLE:
+            result += "{\"name\":\"" + q.text + "\",\"data\":["
+            for v in question_variants:
+                count = AnswerSelectMultiple.objects.filter(body=v).count()
+                result += "{\"name\":\"" + v + "\",\"value\":" + str(count) + "},"
+            result = result[:-1] + "]},"
+        elif q.question_type == Question.INTEGER:
+            result += "{\"name\":\"" + q.text + "\",\"data\":["
+            answers = AnswerInteger.objects.filter(question=q)
+            sum = 0
+            for a in answers:
+                sum += a.body
+            sum /= answers.count()
+            result += "{\"name\":\"Average\",\"value\":" + str(sum) + "},"
+            result = result[:-1] + "]},"
+    result = result[:-1] + "]"
+    return render(request, 'statistics.html', {'results': result})
+

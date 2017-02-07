@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load survey_extras %}
+
+{% block body %}
+
+    <script>
+        var jsonString = {{ results  }}
+    </script>
+
+<div>
+    <h1 class="mt-3">PaaS Survey Statistics</h1>
+	<form action="/survey/" method="post">{% csrf_token %}
+		<div class="category-container">
+
+        </div>
+
+</div>
+
+{% endblock %}
+
+{% block extrajs %}
+	<script src="/media/js/jquery.collapsible.js"></script>	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			//collapsible management
+			$('.collapsible').collapsible({defaultOpen: 'response_metadata'});
+		});
+	</script>
+{% endblock %}
