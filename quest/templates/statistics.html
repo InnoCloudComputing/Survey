@@ -4,14 +4,55 @@
 {% block body %}
 
     <script>
-        var jsonString = {{ results  }}
+        var jsonString = {{ results  }};
+        var ctx1 = document.getElementById("first");
+        var firstChart = new Chart(ctx1, {
+            type: 'pie',
+            data: {
+                labels: [jsonString[0].data[0].name, jsonString[0].data[1].name, jsonString[0].data[2].name, jsonString[0].data[3].name],
+                datasets: [{
+                    label: jsonString[0].name,
+                    data: [jsonString[0].data[0].value, jsonString[0].data[1].value, jsonString[0].data[2].value, jsonString[0].data[3].value],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)'
+                    ]
+                }]
+            }
+        });
+        document.getElementById("second").innerHTML = "<h3>" + jsonString[1].name + "</h3><p><strong>Average: " + jsonString[1].data.value + "</strong></p>";
+        document.getElementById("third").innerHTML = "<h3>" + jsonString[2].name + "</h3><p><strong>Average: " + jsonString[2].data.value + "</strong></p>";
+        var ctx4 = document.getElementById("fourth");
+        var fourthChart = new Chart(ctx4, {
+            type: 'pie',
+            data: {
+                labels: [jsonString[3].data[0].name, jsonString[3].data[1].name, jsonString[3].data[2].name, jsonString[0].data[3].name],
+                datasets: [{
+                    label: jsonString[3].name,
+                    data: [jsonString[3].data[0].value, jsonString[3].data[1].value, jsonString[3].data[2].value, jsonString[3].data[3].value],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)'
+                    ]
+                }]
+            }
+        });
     </script>
 
 <div>
     <h1 class="mt-3">PaaS Survey Statistics</h1>
 	<form action="/survey/" method="post">{% csrf_token %}
 		<div class="category-container">
-
+            <div id="results">
+                <canvas id="first" width="400" height="400"></canvas>
+                <div id="second"></div>
+                <div id="third"></div>
+                <canvas id="fourth" width="400" height="400"></canvas>
+            </div>
         </div>
 
 </div>
