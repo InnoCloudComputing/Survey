@@ -4,7 +4,7 @@
 {% block body %}
 
     <script>
-        var jsonString = {{ results|escapejs  }};
+        var jsonString = {{ results }};
         var ctx1 = document.getElementById("first");
         var firstChart = new Chart(ctx1, {
             type: 'pie',
@@ -60,11 +60,4 @@
 {% endblock %}
 
 {% block extrajs %}
-	<script src="/media/js/jquery.collapsible.js"></script>	
-	<script type="text/javascript">
-		$(document).ready(function() {
-			//collapsible management
-			$('.collapsible').collapsible({defaultOpen: 'response_metadata'});
-		});
-	</script>
 {% endblock %}
