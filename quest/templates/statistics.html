@@ -4,7 +4,7 @@
 {% block body %}
 
     <script>
-        var jsonString = {{ results }};
+        var jsonString = JSON.parse(document.getElementById('json'));
         var ctx1 = document.getElementById("first");
         var firstChart = new Chart(ctx1, {
             type: 'pie',
@@ -48,7 +48,7 @@
 	<form action="/survey/" method="post">{% csrf_token %}
 		<div class="category-container">
             <div id="results">
-                <div id="json">{{ results }}</div>
+                <div id="json" style="display: none">{{ results }}</div>
                 <canvas id="first" width="400" height="400"></canvas>
                 <div id="second"></div>
                 <div id="third"></div>
