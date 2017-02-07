@@ -24,8 +24,9 @@
 
     <script>
         var jsonString = JSON.parse(document.getElementById('json').innerHTML);
-        var ctx1 = document.getElementById("first");
         document.getElementById('firsth').innerHTML = jsonString[0].name;
+        document.getElementById('fourth').innerHTML = jsonString[3].name;
+        var ctx1 = document.getElementById("first");
         var firstChart = new Chart(ctx1, {
             type: 'pie',
             data: {
