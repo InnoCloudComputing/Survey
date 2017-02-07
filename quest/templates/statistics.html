@@ -48,6 +48,7 @@
 	<form action="/survey/" method="post">{% csrf_token %}
 		<div class="category-container">
             <div id="results">
+                <div id="json">{{ results }}</div>
                 <canvas id="first" width="400" height="400"></canvas>
                 <div id="second"></div>
                 <div id="third"></div>
