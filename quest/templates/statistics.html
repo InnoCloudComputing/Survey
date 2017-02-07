@@ -4,7 +4,7 @@
 {% block body %}
 
     <script>
-        var jsonString = {{ results  }};
+        var jsonString = {{ results|escapejs  }};
         var ctx1 = document.getElementById("first");
         var firstChart = new Chart(ctx1, {
             type: 'pie',
