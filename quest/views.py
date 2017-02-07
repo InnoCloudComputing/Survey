@@ -36,38 +36,37 @@ def privacy(request):
 def survey_statistic(request):
     # get all questions
     questions = Question.objects.all()
-    result = "{"
+    result = "["
     for q in questions:
         # get all answers for the question
         question_variants = [x.strip() for x in q.choices.split(",")]
         if q.question_type == Question.RADIO:
-            result += "\"" + q.text + "\":["
+            result += "{\"name\":\"" + q.text + "\",\"data\":["
             for v in question_variants:
                 count = AnswerRadio.objects.filter(body=v).count()
-                result += "{\"" + v + "\":" + str(count) + "},"
-            result = result[:-1] + "],"
+                result += "{\"name\":\"" + v + "\",\"value\":" + str(count) + "},"
+            result = result[:-1] + "]},"
         elif q.question_type == Question.SELECT:
-            result += "\"" + q.text + "\":["
+            result += "{\"name\":\"" + q.text + "\",\"data\":["
             for v in question_variants:
                 count = AnswerSelect.objects.filter(body=v).count()
-                result += "{\"" + v + "\":" + str(count) + "},"
-            result = result[:-1] + "],"
+                result += "{\"name\":\"" + v + "\",\"value\":" + str(count) + "},"
+            result = result[:-1] + "]},"
         elif q.question_type == Question.SELECT_MULTIPLE:
-            result += "\"" + q.text + "\":["
+            result += "{\"name\":\"" + q.text + "\",\"data\":["
             for v in question_variants:
                 count = AnswerSelectMultiple.objects.filter(body=v).count()
-                result += "{\"" + v + "\":" + str(count) + "},"
-            result = result[:-1] + "],"
+                result += "{\"name\":\"" + v + "\",\"value\":" + str(count) + "},"
+            result = result[:-1] + "]},"
         elif q.question_type == Question.INTEGER:
-            result += "\"" + q.text + "\":["
+            result += "{\"name\":\"" + q.text + "\",\"data\":["
             answers = AnswerInteger.objects.filter(question=q)
             sum = 0
             for a in answers:
                 sum += a.body
             sum /= answers.count()
-            result += "{\"Average\":" + str(sum) + "},"
-            result = result[:-1] + "],"
-    result = result[:-1] + "}"
-    print result
+            result += "{\"name\":\"Average\",\"value\":" + str(sum) + "},"
+            result = result[:-1] + "]},"
+    result = result[:-1] + "]"
     return render(request, 'statistics.html', {'results': result})
 
